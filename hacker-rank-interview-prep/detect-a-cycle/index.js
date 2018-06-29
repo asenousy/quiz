@@ -1,9 +1,20 @@
-function hasCycle(node) {
+function hasCycleHash(node) {
   const set = new Set();
   while(node) {
     if(set.has(node)) return true;
     set.add(node);
     node = node.next;
+  }
+  return false;
+}
+
+function hasCycle(node) {
+  let turtoise = node;
+  let rabbit = node;
+  while(turtoise.next.next != null) {
+    turtoise = turtoise.next;
+    rabbit = rabbit.next.next;
+    if(rabbit === turtoise) return true;
   }
   return false;
 }
